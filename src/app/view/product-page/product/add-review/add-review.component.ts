@@ -1,7 +1,7 @@
 import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 
-import { ProductsService } from '../../../services/products.service';
+import { ProductsService } from '../../../../core/services/products.service';
 
 
 @Component({

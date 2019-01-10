@@ -1,9 +1,9 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
-import { ProductListPageComponent } from './product-list-page/product-list-page.component';
-import { ProductPageComponent } from './product-page/product-page.component';
-import { ProductPageGuard } from './product-page/product-page.guard';
+import { ProductListPageComponent } from './view/product-list-page/product-list-page.component';
+import { ProductPageComponent } from './view/product-page/product-page.component';
+import { ProductPageGuard } from './view/product-page/product-page.guard';
 
 
 const routes: Routes = [

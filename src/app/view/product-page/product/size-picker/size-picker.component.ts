@@ -1,6 +1,6 @@
 import { Component, OnInit, ChangeDetectionStrategy, ChangeDetectorRef } from '@angular/core';
 
-import { ProductsService } from '../../../services/products.service';
+import { ProductsService } from '../../../../core/services/products.service';
 
 @Component({
   selector: 'app-size-picker',

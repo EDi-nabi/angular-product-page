@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { take } from 'rxjs/operators';
 
-import { CompareService } from '../../../services/compare.service';
-import { ProductsService } from '../../../services/products.service';
+import { CompareService } from '../../../../core/services/compare.service';
+import { ProductsService } from '../../../../core/services/products.service';
 
 @Component({
   selector: 'app-add-to-compare',

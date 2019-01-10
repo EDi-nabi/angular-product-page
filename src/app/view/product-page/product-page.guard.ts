@@ -3,7 +3,7 @@ import { CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot, Params, Activ
 import { Observable, of } from 'rxjs';
 import { switchMap, tap } from 'rxjs/operators';
 
-import { ProductsService } from '../services/products.service';
+import { ProductsService } from '../../core/services/products.service';
 
 @Injectable({
   providedIn: 'root'

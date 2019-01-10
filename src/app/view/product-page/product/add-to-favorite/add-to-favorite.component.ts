@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { take } from 'rxjs/operators';
 
-import { FavoriteService } from '../../../services/favorite.service';
-import { ProductsService } from '../../../services/products.service';
+import { FavoriteService } from '../../../../core/services/favorite.service';
+import { ProductsService } from '../../../../core/services/products.service';
 
 @Component({
   selector: 'app-add-to-favorite',
