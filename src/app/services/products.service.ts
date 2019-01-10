@@ -20,8 +20,7 @@ export class ProductsService {
   public activeProductVariant$: Observable<number>;
 
 
-  constructor(private store: Store<fromApp.AppState>) {
-  }
+  constructor(private store: Store<fromApp.AppState>) {}
 
   // get from state
   getProductList$() {
@@ -53,4 +52,7 @@ export class ProductsService {
     this.store.dispatch(new ProductListActions.AddReview(review));
   }
 
+  dispatchViewProduct(id: number) {
+    this.store.dispatch(new ProductListActions.ViewProduct(id));
+  }
 }

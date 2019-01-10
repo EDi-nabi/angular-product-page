@@ -14,7 +14,7 @@ export class SizePickerComponent implements OnInit {
   public sizes: String[];
   public selectedSize: string;
 
-  constructor(private productsService: ProductsService, private changeDetector: ChangeDetectorRef) { }
+  constructor(private productsService: ProductsService) { }
 
   ngOnInit() {
     this.productList$ = this.productsService.getProductList$();
@@ -29,7 +29,6 @@ export class SizePickerComponent implements OnInit {
         // get distinct sizes from variants array
         this.sizes = product.variants.map(item => item.size).filter((value, index, self) => self.indexOf(value) === index);
         this.selectedSize = product.variants[variant].size;
-        this.changeDetector.detectChanges();
       }
     });
   }

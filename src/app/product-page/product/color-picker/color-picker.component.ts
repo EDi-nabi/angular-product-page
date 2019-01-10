@@ -15,7 +15,7 @@ export class ColorPickerComponent implements OnInit {
   public colors: String[];
   public selectedColor: string;
 
-  constructor(private productsService: ProductsService, private changeDetector: ChangeDetectorRef) { }
+  constructor(private productsService: ProductsService) { }
 
   ngOnInit() {
     this.productList$ = this.productsService.getProductList$();
@@ -30,7 +30,6 @@ export class ColorPickerComponent implements OnInit {
         // get distinct colors from variants array
         this.colors = product.variants.map(item => item.color).filter((value, index, self) => self.indexOf(value) === index);
         this.selectedColor = product.variants[variant].color;
-        this.changeDetector.detectChanges();
       }
     });
   }

@@ -164,9 +164,6 @@ export function ProductListReducer(state = initialState, action: ProductListActi
       }
       return state;
 
-    // case RouterActions.ROUTER_NAVIGATION:
-    //   return state;
-
     default:
       return state;
   }
