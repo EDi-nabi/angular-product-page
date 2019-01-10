@@ -1,6 +1,10 @@
-# Shop2
+# Angular product page
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 7.1.4.
+Sample store product page.
+The goal was to design a component structure for eCommerce application that will be easy to extend.
+Application state is managed in ngrx/store.
+View components are logic free (with a few small exceptions for presentational logic).
+Services create a communication layer between the components and the state.
 
 ## Development server
 
