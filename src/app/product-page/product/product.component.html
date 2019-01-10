@@ -7,10 +7,10 @@
       </div>
       <div class="col-md-5">
         <div class="row">
-          <h1>{{ (productListState | async).activeProduct.product.name }}</h1>
-          <h3>${{ (productListState | async).activeProduct.product.price }}</h3>
-          <h4>{{ (productListState | async).activeProduct.product.variants[(productListState | async).activeProduct.variant].code }}</h4>
-          <p>{{ (productListState | async).activeProduct.product.description }}</p>
+          <!-- <h1>{{ (product$ | async).name }}</h1>
+          <h3>${{ (product$ | async).price }}</h3>
+          <h4>{{ (product$ | async).variants[(variant$ | async)].code }}</h4>
+          <p>{{ (product$ | async).description }}</p> -->
         </div>
         <hr>
         <div class="row">

@@ -5,11 +5,13 @@ import { ActiveProduct } from '../interfaces/active-product.interface';
 export interface State {
   products: Product[];
   activeProduct: ActiveProduct;
+  testing: number;
 }
 
 // some dummy products
 const initialState: State = {
-  activeProduct: { product: false, variant: 0 },
+  activeProduct: {
+  },
   products: [
     new Product( 1, 'Product 1', 'P1 Lorem ipsum dolor sit amet.', 12.3,
       [
@@ -108,6 +110,7 @@ const initialState: State = {
       ]
     ),
   ]
+  , testing: 13
 };
 
 export function ProductListReducer(state = initialState, action: ProductListActions.ProductListActions) {
@@ -156,8 +159,16 @@ export function ProductListReducer(state = initialState, action: ProductListActi
       }
       return state;
 
+    // case RouterActions.ROUTER_NAVIGATION:
+    //   return state;
+
     default:
       return state;
   }
 }
+export const getTesting = (state: State) => { console.log('getTesting: ', state); return state.testing; };
 
+export const getProducts = (state: State) => { console.log('getProducts: ', state); return state.products; };
+export const getActiveProduct = (state: State) => { console.log('getActiveProduct: ', state); return state.activeProduct; };
+export const getActiveProductItem = (state: State) => { console.log('getActiveProductItem: ', state); return state.activeProduct.product; };
+export const getActiveProductVariant = (state: State) => { console.log('getActiveProductVariant: ', state); return state.activeProduct.variant; };

@@ -1,35 +1,54 @@
-import { Component, OnInit } from '@angular/core';
-import { Store } from '@ngrx/store';
-import { Observable } from 'rxjs';
-// import { take } from 'rxjs/operators';
-import { ActivatedRoute, Params } from '@angular/router';
+import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 
-// import { Product } from 'src/app/models/product.model';
-import * as fromProductList from '../../store/product-list.reducers';
-import * as ProductListActions from '../../store/product-list.actions';
-import * as fromApp from '../../store/app.reducers';
+import { ProductsService } from '../../services/products.service';
 
 @Component({
   selector: 'app-product',
   templateUrl: './product.component.html',
-  styleUrls: ['./product.component.css']
+  styleUrls: ['./product.component.css'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ProductComponent implements OnInit {
 
-  productListState: Observable<fromProductList.State>;
+  public product$;
+  public variant$;
 
-  constructor(
-    private route: ActivatedRoute,
-    private store: Store<fromApp.AppState>,
-  ) { }
+  public products$;
+  public testing$;
+
+  constructor(private productsService: ProductsService) {}
 
   ngOnInit() {
-    this.productListState = this.store.select('products');
-    this.route.params.subscribe(
-      (params: Params) => {
-        this.store.dispatch(new ProductListActions.ViewProduct(+params['id']));
-      }
-    );
+    this.product$ = this.productsService.getActiveProduct$();
+    this.variant$ = this.productsService.getActiveProductVariant$();
+
+    this.products$ = this.productsService.getProducts$();
+    this.testing$ = this.productsService.getTesting$();
+
+    this.product$.subscribe({
+      next: (x) => console.log('product: ', x)
+    });
+
+    this.testing$.subscribe({
+      next: (x) => console.log('testing: ', x)
+    });
+
+    this.products$.subscribe({
+      next: (x) => console.log('products: ', x)
+    });
+
+    // this.variant$.subscribe({
+    //   next: (x) => console.log(x)
+    // });
+
+    // console.log('product$:', this.product$);
+    // this.product$.subscribe(
+    //   {
+    //     next: (product) => {
+    //       console.log('product:', product);
+    //     }
+    //   }
+    // );
   }
 
 }

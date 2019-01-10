@@ -5,6 +5,7 @@ import { Observable } from 'rxjs';
 
 import * as fromApp from '../store/app.reducers';
 import * as fromProductList from '../store/product-list.reducers';
+import * as ProductListActions from '../store/product-list.actions';
 
 @Component({
   selector: 'app-product-page',
@@ -25,7 +26,8 @@ export class ProductPageComponent implements OnInit {
     this.route.params.subscribe(
       (params: Params) => {
         this.id = +params['id'];
-        this.productListState = this.store.select('products');
+        // this.productListState = this.store.select('products');
+        this.store.dispatch(new ProductListActions.ViewProduct(this.id));
       }
     );
   }
