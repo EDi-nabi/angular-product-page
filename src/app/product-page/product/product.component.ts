@@ -17,30 +17,19 @@ import * as fromApp from '../../store/app.reducers';
 export class ProductComponent implements OnInit {
 
   productListState: Observable<fromProductList.State>;
-  // product: Product | false = false;
-  // variant = 0;
 
   constructor(
     private route: ActivatedRoute,
-    private store: Store<fromApp.AppState>
+    private store: Store<fromApp.AppState>,
   ) { }
 
   ngOnInit() {
-    // this.store.select('products').pipe(take(1)).subscribe(
-    //   (productListState: fromProductList.State) => {
-    //     this.product = productListState.activeProduct.product;
-    //     this.variant = productListState.activeProduct.variant;
-    //   }
-    // );
     this.productListState = this.store.select('products');
-
     this.route.params.subscribe(
       (params: Params) => {
         this.store.dispatch(new ProductListActions.ViewProduct(+params['id']));
       }
     );
-
-
   }
 
 }

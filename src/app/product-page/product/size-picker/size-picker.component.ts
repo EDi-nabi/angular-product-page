@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy, ChangeDetectorRef } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { take } from 'rxjs/operators';
@@ -11,7 +11,8 @@ import * as fromApp from '../../../store/app.reducers';
 @Component({
   selector: 'app-size-picker',
   templateUrl: './size-picker.component.html',
-  styleUrls: ['./size-picker.component.css']
+  styleUrls: ['./size-picker.component.css'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class SizePickerComponent implements OnInit {
 
@@ -22,12 +23,14 @@ export class SizePickerComponent implements OnInit {
   selectedSize: string;
 
   constructor(
-    private store: Store<fromApp.AppState>
+    private store: Store<fromApp.AppState>,
+    private changeDetector: ChangeDetectorRef
   ) { }
 
   ngOnInit() {
-    this.store.select('products').pipe(take(1)).subscribe(
-      (productListState: fromProductList.State) => {
+    this.productListState = this.store.select('products');
+    this.productListState.subscribe({
+      next: (productListState: fromProductList.State) => {
         this.product = productListState.activeProduct.product;
         this.variant = productListState.activeProduct.variant;
         if (this.product) {
@@ -35,9 +38,10 @@ export class SizePickerComponent implements OnInit {
           this.sizes = this.product.variants.map(variant => variant.size).filter((value, index, self) => self.indexOf(value) === index);
           this.selectedSize = this.product.variants[this.variant].size;
         }
+        this.changeDetector.detectChanges();
       }
-    );
-    this.productListState = this.store.select('products');
+    });
+
   }
 
   onSizeChange(size: string) {

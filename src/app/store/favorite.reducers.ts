@@ -15,7 +15,6 @@ export function FavoriteReducer(state = initialState, action: FavoriteActions.Fa
       const favorite1 = [...state.favorite];
       if (!favorite1.find(product => product.id === action.payload.id)) {
         favorite1.push(action.payload);
-        console.log('ADD: ', action.payload, favorite1);
         return { ...state, favorite: favorite1 };
       }
       return state;
