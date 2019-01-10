@@ -8,7 +8,7 @@ Services create a communication layer between the components and the state.
 
 ## Working demo
 
-For working demo visit [Angular product page](http://nabi.pl/test/angular-product-page/)
+For working demo visit [Angular product page](http://nabi.pl/test/angular-product-page/).
 
 ## Development server
 
