@@ -1,0 +1,5 @@
+<h2>Reviews</h2>
+<div *ngFor="let review of (productListState | async).activeProduct.product.reviews">
+  <h4>{{ review.name }}:</h4>
+  <p>{{ review.content }}</p>
+</div>

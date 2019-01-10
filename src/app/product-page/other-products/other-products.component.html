@@ -1,0 +1,12 @@
+<div class="row">
+  <div class="col-sm-2 col-md-2" *ngFor="let product of (productListState | async).products; let i = index">
+    <a routerLink="/product/{{product.id}}" class="thumbnail">
+      <img [src]="product.variants[0].image" alt="..." style="max-height: 100px">
+      <div class="caption">
+        <h3>{{ product.name }}</h3>
+        <p>{{ product.description }}</p>
+        <!-- <p><a href="#" class="btn btn-primary" role="button">Button</a> <a href="#" class="btn btn-default" role="button">Button</a></p> -->
+      </div>
+    </a>
+  </div>
+</div>

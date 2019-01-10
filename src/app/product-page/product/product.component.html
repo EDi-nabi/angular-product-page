@@ -1,0 +1,57 @@
+
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <div class="row">
+      <div class="col-md-7 center">
+        <app-carousel></app-carousel>
+      </div>
+      <div class="col-md-5">
+        <div class="row">
+          <h1>{{ (productListState | async).activeProduct.product.name }}</h1>
+          <h3>${{ (productListState | async).activeProduct.product.price }}</h3>
+          <h4>{{ (productListState | async).activeProduct.product.variants[(productListState | async).activeProduct.variant].code }}</h4>
+          <p>{{ (productListState | async).activeProduct.product.description }}</p>
+        </div>
+        <hr>
+        <div class="row">
+          <p><app-color-picker></app-color-picker></p>
+        </div>
+        <hr>
+        <div class="row">
+          <p><app-size-picker></app-size-picker></p>
+        </div>
+        <hr>
+        <div class="row">
+          <p><app-add-to-cart></app-add-to-cart></p>
+        </div>
+        <div class="row">
+          <p><app-add-to-favorite></app-add-to-favorite></p>
+        </div>
+        <div class="row">
+          <p><app-add-to-compare></app-add-to-compare></p>
+        </div>
+
+
+      </div>
+    </div>
+  </div>
+  <div class="panel-body">
+    <app-details></app-details>
+  </div>
+</div>
+
+
+<div class="panel panel-default">
+  <div class="panel-body">
+    <div class="row">
+      <div class="col-md-6">
+        <app-reviews></app-reviews>
+      </div>
+      <div class="col-md-6">
+        <app-add-review></app-add-review>
+      </div>
+    </div>
+  </div>
+
+</div>
+
