@@ -6,6 +6,10 @@ Application state is managed in ngrx/store.
 View components are logic free (with a few small exceptions for presentational logic).
 Services create a communication layer between the components and the state.
 
+## Working demo
+
+For working demo visit [Angular product page](http://nabi.pl/test/angular-product-page/)
+
 ## Development server
 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
