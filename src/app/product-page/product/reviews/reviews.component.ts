@@ -1,25 +1,21 @@
-import { Component, OnInit } from '@angular/core';
-import { Store } from '@ngrx/store';
-import { Observable } from 'rxjs';
+import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 
-import * as fromProductList from '../../../store/product-list.reducers';
-import * as fromApp from '../../../store/app.reducers';
+import { ProductsService } from '../../../services/products.service';
 
 @Component({
   selector: 'app-reviews',
   templateUrl: './reviews.component.html',
-  styleUrls: ['./reviews.component.css']
+  styleUrls: ['./reviews.component.css'],
+  // changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ReviewsComponent implements OnInit {
 
-  productListState: Observable<fromProductList.State>;
+  public product$;
 
-  constructor(
-    private store: Store<fromApp.AppState>
-  ) { }
+  constructor(private productsService: ProductsService) { }
 
   ngOnInit() {
-    this.productListState = this.store.select('products');
+    this.product$ = this.productsService.getActiveProduct$();
   }
 
 }

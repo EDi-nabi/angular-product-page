@@ -1,45 +1,56 @@
 import { Injectable } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { Observable, Subject } from 'rxjs';
-import { catchError, map, switchMap, mergeMap, tap, withLatestFrom } from 'rxjs/operators';
+import { Observable } from 'rxjs';
 
 import * as fromApp from '../store/app.reducers';
 import * as fromStore from '../store';
+import * as fromProductList from '../store/product-list.reducers';
+import * as ProductListActions from '../store/product-list.actions';
 import { Product } from '../models/product.model';
+import { Review } from '../interfaces/review.interface';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ProductsService {
 
+  public productList$: Observable<fromProductList.ProductList>;
   public products$: Observable<Product[]>;
-  // public activeProduct$: Observable<Product>;
-  public activeProduct$: Observable<any>;
+  public activeProduct$: Observable<Product>;
   public activeProductVariant$: Observable<number>;
-  public testing$: Observable<number>;
 
 
   constructor(private store: Store<fromApp.AppState>) {
-    this.products$ = this.store.select(fromStore.getProducts);
-    this.activeProduct$ = this.store.select(fromStore.getActiveProductItem);
-    this.testing$ = this.store.select(fromStore.getTesting);
+  }
+
+  // get from state
+  getProductList$() {
+    return this.productList$ ? this.productList$ : this.productList$ = this.store.select(fromStore.getProductList);
   }
 
   getProducts$() {
-    return this.products$;
+    return this.products$ ? this.products$ : this.products$ = this.store.select(fromStore.getProducts);
   }
 
   getActiveProduct$() {
-    return this.activeProduct$;
+    return this.activeProduct$ ? this.activeProduct$ : this.activeProduct$ = this.store.select(fromStore.getActiveProductItem);
   }
 
   getActiveProductVariant$() {
-    return this.activeProductVariant$;
+    return this.activeProductVariant$ ? this.activeProductVariant$ : this.activeProductVariant$ = this.store.select(fromStore.getActiveProductVariant);
   }
 
+  // dispatch actions
+  dispatchPickColor(color: string) {
+    this.store.dispatch(new ProductListActions.PickColor(color));
+  }
 
-  getTesting$() {
-    return this.testing$;
+  dispatchPickSize(size: string) {
+    this.store.dispatch(new ProductListActions.PickSize(size));
+  }
+
+  dispatchAddReview(review: Review) {
+    this.store.dispatch(new ProductListActions.AddReview(review));
   }
 
 }

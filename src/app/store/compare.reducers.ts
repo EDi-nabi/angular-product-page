@@ -36,3 +36,6 @@ export function CompareReducer(state = initialState, action: CompareActions.Comp
       return state;
   }
 }
+
+export const getCompare = (state: State) => state.compare;
+

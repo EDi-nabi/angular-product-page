@@ -1,25 +1,21 @@
-import { Component, OnInit } from '@angular/core';
-import { Store } from '@ngrx/store';
-import { Observable } from 'rxjs';
+import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 
-import * as fromApp from '../../store/app.reducers';
-import * as fromProductList from '../../store/product-list.reducers';
+import { ProductsService } from '../../services/products.service';
 
 @Component({
   selector: 'app-similar-products',
   templateUrl: './similar-products.component.html',
-  styleUrls: ['./similar-products.component.css']
+  styleUrls: ['./similar-products.component.css'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class SimilarProductsComponent implements OnInit {
 
-  public productListState: Observable<fromProductList.State>;
+  public products$;
 
-  constructor(
-    private store: Store<fromApp.AppState>
-  ) { }
+  constructor(private productsService: ProductsService) { }
 
   ngOnInit() {
-    this.productListState = this.store.select('products');
+    this.products$ = this.productsService.getProducts$();
   }
 
 }

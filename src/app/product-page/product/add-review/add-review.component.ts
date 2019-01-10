@@ -1,24 +1,20 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { Store } from '@ngrx/store';
 
-import * as ProductListActions from '../../../store/product-list.actions';
-// import * as fromProductList from '../../../store/product-list.reducers';
-import * as fromApp from '../../../store/app.reducers';
+import { ProductsService } from '../../../services/products.service';
 
 
 @Component({
   selector: 'app-add-review',
   templateUrl: './add-review.component.html',
-  styleUrls: ['./add-review.component.css']
+  styleUrls: ['./add-review.component.css'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class AddReviewComponent implements OnInit {
 
   reviewForm: FormGroup;
 
-  constructor(
-    private store: Store<fromApp.AppState>
-  ) { }
+  constructor(private productsService: ProductsService) { }
 
   ngOnInit() {
     this.initForm();
@@ -33,8 +29,7 @@ export class AddReviewComponent implements OnInit {
 
   onSubmit() {
     const review = this.reviewForm.value;
-    this.store.dispatch(new ProductListActions.AddReview(review));
-    console.log(review);
+    this.productsService.dispatchAddReview(review);
     this.reviewForm.reset();
   }
 }

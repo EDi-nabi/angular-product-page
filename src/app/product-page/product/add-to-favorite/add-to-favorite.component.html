@@ -3,6 +3,6 @@
     <button class="btn btn-warning" type="button" (click)="onAddToFavorite()">Add to favorite</button>
   </div>
   <div class="col-md-6">
-    <p *ngFor="let product of (favoriteState | async).favorite">{{ product.name }} <a (click)="onRemoveFromFavorite(product.id)"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></a></p>
+    <p *ngFor="let product of (favorite$ | async)">{{ product.name }} <a (click)="onRemoveFromFavorite(product.id)"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></a></p>
   </div>
 </div>

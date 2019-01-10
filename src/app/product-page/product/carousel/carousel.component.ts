@@ -1,25 +1,24 @@
-import { Component, OnInit } from '@angular/core';
-import { Store } from '@ngrx/store';
-import { Observable } from 'rxjs';
+import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 
-import * as fromProductList from '../../../store/product-list.reducers';
-import * as fromApp from '../../../store/app.reducers';
+import { ProductsService } from '../../../services/products.service';
+
 
 @Component({
   selector: 'app-carousel',
   templateUrl: './carousel.component.html',
-  styleUrls: ['./carousel.component.css']
+  styleUrls: ['./carousel.component.css'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class CarouselComponent implements OnInit {
 
-  productListState: Observable<fromProductList.State>;
+  public product$;
+  public variant$;
 
-  constructor(
-    private store: Store<fromApp.AppState>
-  ) { }
+  constructor(private productsService: ProductsService) { }
 
   ngOnInit() {
-    this.productListState = this.store.select('products');
+    this.product$ = this.productsService.getActiveProduct$();
+    this.variant$ = this.productsService.getActiveProductVariant$();
   }
 
 }

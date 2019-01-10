@@ -8,14 +8,14 @@ export interface AppState {
   cart: fromCart.State;
   compare: fromCompare.State;
   favorite: fromFavorite.State;
-  products: fromProductList.State;
+  productlist: fromProductList.State;
 }
 
 export const reducers: ActionReducerMap<AppState> = {
   cart: fromCart.CartReducer,
   compare: fromCompare.CompareReducer,
   favorite: fromFavorite.FavoriteReducer,
-  products: fromProductList.ProductListReducer
+  productlist: fromProductList.ProductListReducer
 };
 
 

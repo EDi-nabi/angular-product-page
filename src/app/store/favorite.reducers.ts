@@ -36,3 +36,5 @@ export function FavoriteReducer(state = initialState, action: FavoriteActions.Fa
       return state;
   }
 }
+
+export const getFavorite = (state: State) => state.favorite;

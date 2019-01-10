@@ -37,3 +37,5 @@ export function CartReducer(state = initialState, action: CartActions.CartAction
       return state;
   }
 }
+
+export const getCart = (state: State) => state.cart;

@@ -1,32 +1,21 @@
-import { Component, OnInit } from '@angular/core';
-import { Store } from '@ngrx/store';
-import { Observable } from 'rxjs';
-import { take } from 'rxjs/operators';
+import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 
-import { Product } from 'src/app/models/product.model';
-import * as fromProductList from '../../../store/product-list.reducers';
-import * as fromApp from '../../../store/app.reducers';
+import { ProductsService } from '../../../services/products.service';
 
 @Component({
   selector: 'app-details',
   templateUrl: './details.component.html',
-  styleUrls: ['./details.component.css']
+  styleUrls: ['./details.component.css'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class DetailsComponent implements OnInit {
 
-  productListState: Observable<fromProductList.State>;
-  product: Product | false = false;
+  public product$;
 
-  constructor(
-    private store: Store<fromApp.AppState>
-  ) { }
+  constructor(private productsService: ProductsService) { }
 
   ngOnInit() {
-    this.store.select('products').pipe(take(1)).subscribe(
-      (productListState: fromProductList.State) => {
-        this.product = productListState.activeProduct.product;
-      }
-    );
+    this.product$ = this.productsService.getActiveProduct$();
   }
 
 }
