@@ -1,4 +1,4 @@
-import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
 import { ProductsService } from '../../../../core/services/products.service';
 
@@ -7,7 +7,6 @@ import { ProductsService } from '../../../../core/services/products.service';
   selector: 'app-color-picker',
   templateUrl: './color-picker.component.html',
   styleUrls: ['./color-picker.component.css'],
-  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ColorPickerComponent implements OnInit {
   public activeProduct$;
