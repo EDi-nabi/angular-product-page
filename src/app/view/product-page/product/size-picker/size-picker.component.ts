@@ -1,4 +1,4 @@
-import { Component, OnInit, ChangeDetectionStrategy, ChangeDetectorRef } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 
 import { ProductsService } from '../../../../core/services/products.service';
 
@@ -9,25 +9,26 @@ import { ProductsService } from '../../../../core/services/products.service';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class SizePickerComponent implements OnInit {
-
-  public productList$;
+  public activeProduct$;
   public sizes: String[];
   public selectedSize: string;
 
-  constructor(private productsService: ProductsService) { }
+  constructor(private productsService: ProductsService) {}
 
   ngOnInit() {
-    this.productList$ = this.productsService.getProductList$();
+    this.activeProduct$ = this.productsService.getActiveProduct$();
     this.getSizes();
   }
 
   getSizes() {
-    this.productList$.subscribe({
-      next: (productList) => {
-        const product = productList.activeProduct.product;
-        const variant = productList.activeProduct.variant;
+    this.activeProduct$.subscribe({
+      next: activeProduct => {
+        const product = activeProduct.product;
+        const variant = activeProduct.variant;
         // get distinct sizes from variants array
-        this.sizes = product.variants.map(item => item.size).filter((value, index, self) => self.indexOf(value) === index);
+        this.sizes = product.variants
+          .map(item => item.size)
+          .filter((value, index, self) => self.indexOf(value) === index);
         this.selectedSize = product.variants[variant].size;
       }
     });
@@ -37,5 +38,4 @@ export class SizePickerComponent implements OnInit {
     this.productsService.dispatchPickSize(size);
     this.selectedSize = size;
   }
-
 }

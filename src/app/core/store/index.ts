@@ -1,25 +1,26 @@
-import { createFeatureSelector, createSelector } from '@ngrx/store';
-import * as fromProductList from './product-list.reducers';
+import { createSelector } from '@ngrx/store';
+
+import * as fromCore from './core.reducers';
 import * as fromCart from './cart.reducers';
 import * as fromCompare from './compare.reducers';
 import * as fromFavorite from './favorite.reducers';
+import * as fromProductList from './product-list.reducers';
 
 // selector functions for productsList
-export const selectProductsListState = createFeatureSelector<fromProductList.State>('productlist');
-export const getProductList = createSelector(selectProductsListState, fromProductList.getProductList);
-export const getProducts = createSelector(selectProductsListState, fromProductList.getProducts);
-export const getActiveProduct = createSelector(selectProductsListState, fromProductList.getActiveProduct);
-export const getActiveProductItem = createSelector(selectProductsListState, fromProductList.getActiveProductItem);
-export const getActiveProductVariant = createSelector(selectProductsListState, fromProductList.getActiveProductVariant);
+export const getProductList = createSelector(fromCore.selectCoreState, (state: fromCore.CoreState) => state.productlist);
+export const getProducts = createSelector(getProductList, fromProductList.getProducts);
+export const getActiveProduct = createSelector(getProductList, fromProductList.getActiveProduct);
+export const getActiveProductItem = createSelector(getProductList, fromProductList.getActiveProductItem);
+export const getActiveProductVariant = createSelector(getProductList, fromProductList.getActiveProductVariant);
 
 // selector functions for cart
-export const selectCartState = createFeatureSelector<fromCart.State>('cart');
-export const getCart = createSelector(selectCartState, fromCart.getCart);
+export const getCartState = createSelector(fromCore.selectCoreState, (state: fromCore.CoreState) => state.cart);
+export const getCart = createSelector( getCartState, fromCart.getCart );
 
 // selector functions for compare
-export const selectCompareState = createFeatureSelector<fromCompare.State>('compare');
-export const getCompare = createSelector(selectCompareState, fromCompare.getCompare);
+export const getCompareState = createSelector(fromCore.selectCoreState, (state: fromCore.CoreState) => state.compare);
+export const getCompare = createSelector( getCompareState, fromCompare.getCompare );
 
 // selector functions for favorite
-export const selectFavoriteState = createFeatureSelector<fromFavorite.State>('favorite');
-export const getFavorite = createSelector(selectFavoriteState, fromFavorite.getFavorite);
+export const getFavoriteState = createSelector(fromCore.selectCoreState, (state: fromCore.CoreState) => state.favorite);
+export const getFavorite = createSelector( getFavoriteState, fromFavorite.getFavorite );

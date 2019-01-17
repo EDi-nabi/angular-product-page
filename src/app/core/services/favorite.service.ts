@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 
-import * as fromApp from '../store/app.reducers';
+import * as fromCore from '../store/core.reducers';
 import * as fromStore from '../store';
 import * as FavoriteActions from '../store/favorite.actions';
 import { Product } from '../models/product.model';
@@ -14,7 +14,7 @@ export class FavoriteService {
 
   public favorite$: Observable<Product[]>;
 
-  constructor(private store: Store<fromApp.AppState>) { }
+  constructor(private store: Store<fromCore.CoreState>) { }
 
   // get from state
   getFavorite$() {

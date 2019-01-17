@@ -17,7 +17,7 @@ export class CarouselComponent implements OnInit {
   constructor(private productsService: ProductsService) { }
 
   ngOnInit() {
-    this.product$ = this.productsService.getActiveProduct$();
+    this.product$ = this.productsService.getActiveProductItem$();
     this.variant$ = this.productsService.getActiveProductVariant$();
   }
 

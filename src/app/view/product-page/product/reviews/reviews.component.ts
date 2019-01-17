@@ -1,4 +1,4 @@
-import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
 import { ProductsService } from '../../../../core/services/products.service';
 
@@ -6,7 +6,6 @@ import { ProductsService } from '../../../../core/services/products.service';
   selector: 'app-reviews',
   templateUrl: './reviews.component.html',
   styleUrls: ['./reviews.component.css'],
-  // changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ReviewsComponent implements OnInit {
 
@@ -15,7 +14,7 @@ export class ReviewsComponent implements OnInit {
   constructor(private productsService: ProductsService) { }
 
   ngOnInit() {
-    this.product$ = this.productsService.getActiveProduct$();
+    this.product$ = this.productsService.getActiveProductItem$();
   }
 
 }

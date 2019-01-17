@@ -15,7 +15,7 @@ export class DetailsComponent implements OnInit {
   constructor(private productsService: ProductsService) { }
 
   ngOnInit() {
-    this.product$ = this.productsService.getActiveProduct$();
+    this.product$ = this.productsService.getActiveProductItem$();
   }
 
 }

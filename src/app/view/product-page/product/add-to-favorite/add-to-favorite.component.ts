@@ -17,7 +17,7 @@ export class AddToFavoriteComponent implements OnInit {
   constructor(private productsService: ProductsService, private favoriteService: FavoriteService) { }
 
   ngOnInit() {
-    this.product$ = this.productsService.getActiveProduct$();
+    this.product$ = this.productsService.getActiveProductItem$();
     this.favorite$ = this.favoriteService.getFavorite$();
   }
 

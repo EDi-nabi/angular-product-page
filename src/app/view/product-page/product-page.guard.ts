@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot, Params, ActivatedRoute } from '@angular/router';
-import { Observable, of } from 'rxjs';
-import { switchMap, tap } from 'rxjs/operators';
+import { Observable } from 'rxjs';
+import { tap } from 'rxjs/operators';
 
 import { ProductsService } from '../../core/services/products.service';
 
@@ -15,7 +15,6 @@ export class ProductPageGuard implements CanActivate {
   setViewProduct(id: number): Observable<any> {
     return this.route.params.pipe(tap((params: Params) => {
       this.productsService.dispatchViewProduct(+params['id']);
-      console.log('Params z routera', params['id']);
     }));
   }
 

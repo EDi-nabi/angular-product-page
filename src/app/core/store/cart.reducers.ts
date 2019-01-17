@@ -1,6 +1,6 @@
 import { Product } from '../models/product.model';
 import * as CartActions from './cart.actions';
-import * as fromApp from './app.reducers';
+import * as fromCore from './core.reducers';
 
 export interface State {
   cart: Product[];

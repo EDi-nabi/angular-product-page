@@ -17,7 +17,7 @@ export class AddToCartComponent implements OnInit {
   constructor(private productsService: ProductsService, private cartService: CartService) { }
 
   ngOnInit() {
-    this.product$ = this.productsService.getActiveProduct$();
+    this.product$ = this.productsService.getActiveProductItem$();
     this.cart$ = this.cartService.getCart$();
   }
 

@@ -1,4 +1,4 @@
-import { Component, OnInit, ChangeDetectionStrategy, ChangeDetectorRef } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 
 import { ProductsService } from '../../../../core/services/products.service';
 
@@ -10,25 +10,26 @@ import { ProductsService } from '../../../../core/services/products.service';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ColorPickerComponent implements OnInit {
-
-  public productList$;
+  public activeProduct$;
   public colors: String[];
   public selectedColor: string;
 
-  constructor(private productsService: ProductsService) { }
+  constructor(private productsService: ProductsService) {}
 
   ngOnInit() {
-    this.productList$ = this.productsService.getProductList$();
+    this.activeProduct$ = this.productsService.getActiveProduct$();
     this.getColors();
   }
 
   getColors() {
-    this.productList$.subscribe({
-      next: (productList) => {
-        const product = productList.activeProduct.product;
-        const variant = productList.activeProduct.variant;
+    this.activeProduct$.subscribe({
+      next: activeProduct => {
+        const product = activeProduct.product;
+        const variant = activeProduct.variant;
         // get distinct colors from variants array
-        this.colors = product.variants.map(item => item.color).filter((value, index, self) => self.indexOf(value) === index);
+        this.colors = product.variants
+          .map(item => item.color)
+          .filter((value, index, self) => self.indexOf(value) === index);
         this.selectedColor = product.variants[variant].color;
       }
     });
@@ -38,5 +39,4 @@ export class ColorPickerComponent implements OnInit {
     this.productsService.dispatchPickColor(color);
     this.selectedColor = color;
   }
-
 }

@@ -2,11 +2,12 @@ import { Injectable } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 
-import * as fromApp from '../store/app.reducers';
 import * as fromStore from '../store';
+import * as fromCore from '../store/core.reducers';
 import * as fromProductList from '../store/product-list.reducers';
 import * as ProductListActions from '../store/product-list.actions';
 import { Product } from '../models/product.model';
+import { ActiveProduct } from '../interfaces/active-product.interface';
 import { Review } from '../interfaces/review.interface';
 
 @Injectable({
@@ -14,13 +15,14 @@ import { Review } from '../interfaces/review.interface';
 })
 export class ProductsService {
 
-  public productList$: Observable<fromProductList.ProductList>;
+  public productList$: Observable<fromProductList.State>;
   public products$: Observable<Product[]>;
-  public activeProduct$: Observable<Product>;
+  public activeProduct$: Observable<ActiveProduct>;
+  public activeProductItem$: Observable<Product>;
   public activeProductVariant$: Observable<number>;
 
 
-  constructor(private store: Store<fromApp.AppState>) {}
+  constructor(private store: Store<fromCore.CoreState>) {}
 
   // get from state
   getProductList$() {
@@ -32,7 +34,11 @@ export class ProductsService {
   }
 
   getActiveProduct$() {
-    return this.activeProduct$ ? this.activeProduct$ : this.activeProduct$ = this.store.select(fromStore.getActiveProductItem);
+    return this.activeProduct$ ? this.activeProduct$ : this.activeProduct$ = this.store.select(fromStore.getActiveProduct);
+  }
+
+  getActiveProductItem$() {
+    return this.activeProductItem$ ? this.activeProductItem$ : this.activeProductItem$ = this.store.select(fromStore.getActiveProductItem);
   }
 
   getActiveProductVariant$() {

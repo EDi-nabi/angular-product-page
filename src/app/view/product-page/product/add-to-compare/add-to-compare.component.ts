@@ -17,7 +17,7 @@ export class AddToCompareComponent implements OnInit {
   constructor(private productsService: ProductsService, private compareService: CompareService) { }
 
   ngOnInit() {
-    this.product$ = this.productsService.getActiveProduct$();
+    this.product$ = this.productsService.getActiveProductItem$();
     this.compare$ = this.compareService.getCompare$();
   }
 
