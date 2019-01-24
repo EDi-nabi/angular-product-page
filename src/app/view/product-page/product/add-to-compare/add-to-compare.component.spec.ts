@@ -1,6 +1,9 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { AddToCompareComponent } from './add-to-compare.component';
+import { ProductsService } from '../../../../core/services/products.service';
+import { Store } from '@ngrx/store';
+import { MockStore } from '../../../../testing/mock-store';
 
 describe('AddToCompareComponent', () => {
   let component: AddToCompareComponent;
@@ -8,7 +11,12 @@ describe('AddToCompareComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ AddToCompareComponent ]
+      declarations: [ AddToCompareComponent ],
+      providers: [
+        ProductsService,
+        { provide: Store, useClass: MockStore }
+      ]
+
     })
     .compileComponents();
   }));

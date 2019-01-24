@@ -1,6 +1,8 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { DetailsComponent } from './details.component';
+import { ProductsService } from '../../../../core/services/products.service';
+import { MockProductsService } from '../../../../testing/mock-products-service';
 
 describe('DetailsComponent', () => {
   let component: DetailsComponent;
@@ -8,7 +10,11 @@ describe('DetailsComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ DetailsComponent ]
+      declarations: [ DetailsComponent ],
+      providers: [
+        ProductsService,
+        { provide: ProductsService, useClass: MockProductsService },
+      ]
     })
     .compileComponents();
   }));
