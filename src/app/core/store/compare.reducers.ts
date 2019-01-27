@@ -5,7 +5,7 @@ export interface State {
   compare: Product[];
 }
 
-const initialState: State = {
+export const initialState: State = {
   compare: []
 };
 

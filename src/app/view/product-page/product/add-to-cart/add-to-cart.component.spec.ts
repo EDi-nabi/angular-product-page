@@ -2,8 +2,10 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { AddToCartComponent } from './add-to-cart.component';
 import { ProductsService } from '../../../../core/services/products.service';
-import { Store } from '@ngrx/store';
-import { MockStore } from '../../../../testing/mock-store';
+import { MockProductsService } from '../../../../testing/mock-products-service';
+import { CartService } from '../../../../core/services/cart.service';
+import { MockCartService } from '../../../../testing/mock-cart-service';
+
 
 describe('AddToCartComponent', () => {
   let component: AddToCartComponent;
@@ -14,7 +16,8 @@ describe('AddToCartComponent', () => {
       declarations: [ AddToCartComponent ],
       providers: [
         ProductsService,
-        { provide: Store, useClass: MockStore }
+        { provide: ProductsService, useClass: MockProductsService },
+        { provide: CartService, useClass: MockCartService }
       ]
     })
     .compileComponents();
@@ -26,7 +29,23 @@ describe('AddToCartComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+  it('should be created', () => {
     expect(component).toBeTruthy();
   });
+
+  it('onAddToCart should call dispatchAddToCart', () => {
+    const cartService = fixture.debugElement.injector.get(CartService);
+    const spyDispatchAddToCart = spyOn(cartService, 'dispatchAddToCart').and.callThrough();
+    component.onAddToCart();
+    expect(spyDispatchAddToCart).toHaveBeenCalledTimes(1);
+  });
+
+  it('onRemoveFromCart should call dispatchRemoveFromCart', () => {
+    const cartService = fixture.debugElement.injector.get(CartService);
+    const spyDispatchRemoveFromCart = spyOn(cartService, 'dispatchRemoveFromCart').and.callThrough();
+    component.onRemoveFromCart(0);
+    expect(spyDispatchRemoveFromCart).toHaveBeenCalledTimes(1);
+    expect(spyDispatchRemoveFromCart).toHaveBeenCalledWith(0);
+  });
+
 });

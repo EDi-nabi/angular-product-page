@@ -1,36 +1,36 @@
 import { Action } from '@ngrx/store';
 import { Review } from '../interfaces/review.interface';
+import { Product } from '../models/product.model';
 
-export const VIEW_PRODUCT = 'VIEW_PRODUCT';
-export const VIEW_PRODUCT_VARIANT = 'VIEW_PRODUCT_VARIANT';
-export const PICK_COLOR = 'PICK_COLOR';
-export const PICK_SIZE = 'PICK_SIZE';
-export const ADD_REVIEW = 'ADD_REVIEW';
+export const LOAD_PRODUCTS = '[Product List] Load products';
+export const VIEW_PRODUCT = '[Product List] View product';
+export const PICK_COLOR = '[Product List] Pick color';
+export const PICK_SIZE = '[Product List] Pick size';
+export const ADD_REVIEW = '[Product List] Add review';
 
+export class LoadProducts implements Action {
+  readonly type = LOAD_PRODUCTS;
+  constructor(public payload: Product[]) {}
+}
 
 export class ViewProduct implements Action {
   readonly type = VIEW_PRODUCT;
-  constructor(public payload: number) { }
-}
-
-export class ViewProductVariant implements Action {
-  readonly type = VIEW_PRODUCT_VARIANT;
-  constructor(public payload: number) { }
+  constructor(public payload: number) {}
 }
 
 export class PickColor implements Action {
   readonly type = PICK_COLOR;
-  constructor(public payload: string) { }
+  constructor(public payload: string) {}
 }
 
 export class PickSize implements Action {
   readonly type = PICK_SIZE;
-  constructor(public payload: string) { }
+  constructor(public payload: string) {}
 }
 
 export class AddReview implements Action {
   readonly type = ADD_REVIEW;
-  constructor(public payload: Review) { }
+  constructor(public payload: Review) {}
 }
 
-export type ProductListActions = ViewProduct | ViewProductVariant | PickColor | PickSize | AddReview;
+export type ProductListActions = LoadProducts | ViewProduct | PickColor | PickSize | AddReview;

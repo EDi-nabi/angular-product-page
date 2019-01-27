@@ -46,6 +46,10 @@ export class ProductsService {
   }
 
   // dispatch actions
+  dispatchLoadProducts(data: Product[]) {
+    this.store.dispatch(new ProductListActions.LoadProducts(data));
+  }
+
   dispatchPickColor(color: string) {
     this.store.dispatch(new ProductListActions.PickColor(color));
   }
@@ -61,4 +65,5 @@ export class ProductsService {
   dispatchViewProduct(id: number) {
     this.store.dispatch(new ProductListActions.ViewProduct(id));
   }
+
 }

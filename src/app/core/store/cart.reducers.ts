@@ -1,12 +1,11 @@
 import { Product } from '../models/product.model';
 import * as CartActions from './cart.actions';
-import * as fromCore from './core.reducers';
 
 export interface State {
   cart: Product[];
 }
 
-const initialState: State = {
+export const initialState: State = {
   cart: []
 };
 
@@ -36,6 +35,7 @@ export function CartReducer(state = initialState, action: CartActions.CartAction
     default:
       return state;
   }
+
 }
 
 export const getCart = (state: State) => state.cart;

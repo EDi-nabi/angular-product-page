@@ -1,27 +1,46 @@
-export class MockData {
-  private cart = [];
-  private compare = [];
-  private favorite = [];
-  private review = { name: 'Bob', content: 'Lorem ipsum' };
-  private reviews = [this.review];
-  private variant1 = { color: 'blue', size: 'S', code: 'SBLUE', image: 'https://image.jpg' };
-  private variant2 = { color: 'orange', size: 'M', code: 'MORANGE', image: 'https://image.jpg' };
-  private variant3 = { color: 'purple', size: 'L', code: 'LPURPLE', image: 'https://image.jpg' };
-  private variants = [this.variant1, this.variant2, this.variant3];
-  private product1 = { id: 1, name: 'Product 1', description: 'Lorem ipsum', price: 10.0, variants: this.variants, reviews: this.reviews };
-  private product2 = { id: 2, name: 'Product 2', description: 'Lorem ipsum', price: 10.0, variants: this.variants, reviews: this.reviews };
-  private products = [this.product1, this.product2];
-  private activeProduct = { product: this.product1, variant: 0 };
-  private productList = { activeProduct: this.activeProduct, products: this.products };
-  private store = { cart: this.cart, compare: this.compare, favorite: this.favorite, productlist: this.productList };
+import * as fromCore from '../core/store/core.reducers';
+import * as fromCart from '../core/store/cart.reducers';
+import * as fromCompare from '../core/store/compare.reducers';
+import * as fromFavorite from '../core/store/favorite.reducers';
+import * as fromProductList from '../core/store/product-list.reducers';
+import { Product } from '../core/models/product.model';
+import { Review } from '../core/interfaces/review.interface';
+import { ProductVariant } from '../core/interfaces/product-variant.interface';
+import { ActiveProduct } from '../core/interfaces/active-product.interface';
 
-  getStore() { return this.store; }
-  getCart() { return this.cart; }
-  getCompare() { return this.compare; }
-  getFavorite() { return this.favorite; }
-  getProductList() { return this.productList; }
+export class MockData {
+  private cartState: fromCart.State = { cart: [] };
+  private compareState: fromCompare.State = { compare: [] };
+  private favoriteState: fromFavorite.State = { favorite: [] };
+  private review: Review = { name: 'Bob', content: 'Lorem ipsum' };
+  private reviews: Review[] = [this.review];
+  private variant1: ProductVariant = { color: 'blue', size: 'S', code: 'SBLUE', image: 'https://image.jpg' };
+  private variant2: ProductVariant = { color: 'blue', size: 'L', code: 'LBLUE', image: 'https://image.jpg' };
+  private variant3: ProductVariant = { color: 'purple', size: 'S', code: 'SPURPLE', image: 'https://image.jpg' };
+  private variants: ProductVariant[] = [this.variant1, this.variant2, this.variant3];
+  private product1: Product = { id: 1, name: 'Product 1', description: 'Lorem ipsum', price: 10.0, variants: this.variants, reviews: this.reviews };
+  private product2: Product = { id: 2, name: 'Product 2', description: 'Lorem ipsum', price: 10.0, variants: this.variants, reviews: this.reviews };
+  private products: Product[] = [this.product1, this.product2];
+  private activeProduct: ActiveProduct = { product: this.product1, variant: 0 };
+  private emptyActiveProduct: ActiveProduct = {};
+  private productlist: fromProductList.ProductList = { activeProduct: this.activeProduct, products: this.products };
+  private emptyProductlist: fromProductList.ProductList = { activeProduct: this.emptyActiveProduct, products: this.products };
+  private productlistState: fromProductList.State = { productlist: this.emptyProductlist, loaded: true };
+  private coreState: fromCore.CoreState = { cart: this.cartState, compare: this.compareState, favorite: this.favoriteState, productlist: this.productlistState };
+
+  getCoreState() { return this.coreState; }
+  getCartState() { return this.cartState; }
+  getCart() { return this.cartState.cart; }
+  getCompareState() { return this.compareState; }
+  getCompare() { return this.compareState.compare; }
+  getFavoriteState() { return this.favoriteState; }
+  getFavorite() { return this.favoriteState.favorite; }
+  getProductlistState() { return this.productlistState; }
+  getProductlist() { return this.productlist; }
   getProducts() { return this.products; }
+  getProduct() { return this.product1; }
   getActiveProduct() { return this.activeProduct; }
   getActiveProductItem() { return this.product1; }
   getActiveProductVariant() { return 0; }
+
 }

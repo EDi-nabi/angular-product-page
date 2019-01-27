@@ -1,6 +1,7 @@
 import { BehaviorSubject, Observable } from 'rxjs';
 import { MockData } from './mock-data';
 import { Product } from '../core/models/product.model';
+import { Review } from '../core/interfaces/review.interface';
 import { ActiveProduct } from '../core/interfaces/active-product.interface';
 
 export class MockProductsService {
@@ -25,5 +26,13 @@ export class MockProductsService {
     const state: BehaviorSubject<number> = new BehaviorSubject(this.mockData.getActiveProductVariant());
     return state.asObservable();
   }
+
+  dispatchPickColor(color: string) {}
+
+  dispatchPickSize(size: string) {}
+
+  dispatchAddReview(review: Review) {}
+
+  dispatchViewProduct(id: number) {}
 
 }

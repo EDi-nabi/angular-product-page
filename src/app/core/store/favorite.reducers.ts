@@ -5,7 +5,7 @@ export interface State {
   favorite: Product[];
 }
 
-const initialState: State = {
+export const initialState: State = {
   favorite: []
 };
 
