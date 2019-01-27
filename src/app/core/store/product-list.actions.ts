@@ -9,12 +9,12 @@ export const PICK_SIZE = '[Product List] Pick size';
 export const ADD_REVIEW = '[Product List] Add review';
 
 export class LoadProducts implements Action {
-  readonly type = LOAD_PRODUCTS;
+  readonly type: typeof LOAD_PRODUCTS = LOAD_PRODUCTS;
   constructor(public payload: Product[]) {}
 }
 
 export class ViewProduct implements Action {
-  readonly type = VIEW_PRODUCT;
+  readonly type: typeof VIEW_PRODUCT = VIEW_PRODUCT;
   constructor(public payload: number) {}
 }
 
@@ -24,12 +24,12 @@ export class PickColor implements Action {
 }
 
 export class PickSize implements Action {
-  readonly type = PICK_SIZE;
+  readonly type: typeof PICK_SIZE = PICK_SIZE;
   constructor(public payload: string) {}
 }
 
 export class AddReview implements Action {
-  readonly type = ADD_REVIEW;
+  readonly type: typeof ADD_REVIEW = ADD_REVIEW;
   constructor(public payload: Review) {}
 }
 

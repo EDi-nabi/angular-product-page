@@ -5,12 +5,12 @@ export const ADD_TO_CART = '[Cart] Add to cart';
 export const REMOVE_FROM_CART = '[Cart] Remove from cart';
 
 export class AddToCart implements Action {
-  readonly type = ADD_TO_CART;
+  readonly type: typeof ADD_TO_CART = ADD_TO_CART;
   constructor(public payload: Product) { }
 }
 
 export class RemoveFromCart implements Action {
-  readonly type = REMOVE_FROM_CART;
+  readonly type: typeof REMOVE_FROM_CART = REMOVE_FROM_CART;
   constructor(public payload: number) { }
 }
 
