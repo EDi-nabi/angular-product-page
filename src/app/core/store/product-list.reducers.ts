@@ -77,6 +77,8 @@ export function ProductListReducer(state = initialState, action: ProductListActi
 
 export const getProductList = (state: State) => state.productlist;
 export const getProducts = (state: State) => state.productlist.products;
+export const getSimilarProducts = (state: State) => state.productlist.products.slice(0, 4);
+export const getOtherProducts = (state: State) => state.productlist.products.slice(4);
 export const getActiveProduct = (state: State) => state.productlist.activeProduct;
 export const getActiveProductItem = (state: State) => state.productlist.activeProduct.product;
 export const getActiveProductVariant = (state: State) => state.productlist.activeProduct.variant;

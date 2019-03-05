@@ -1,121 +1,171 @@
 import { Product } from '../models/product.model';
+import { DomSanitizer } from '@angular/platform-browser';
 
 // define require: any;
 
-const m_80085_gray              = '../../../assets/images/80085-m-gray.png';
-const m_80085_olive             = '../../../assets/images/80085-m-olive.png';
-const m_80085_red               = '../../../assets/images/80085-m-red.png';
-const m_baboon_blue             = '../../../assets/images/baboon-m-blue.png';
-const m_baboon_green            = '../../../assets/images/baboon-m-green.png';
-const m_baboon_smoke            = '../../../assets/images/baboon-m-smoke.png';
-const w_i_love_u_black          = '../../../assets/images/i-love-u-w-black.png';
-const w_i_love_u_pink           = '../../../assets/images/i-love-u-w-pink.png';
-const w_i_love_u_white          = '../../../assets/images/i-love-u-w-white.png';
-const m_lover_blue              = '../../../assets/images/lover-m-blue.png';
-const m_lover_orange            = '../../../assets/images/lover-m-orange.png';
-const m_lover_red               = '../../../assets/images/lover-m-red.png';
-const w_my_vibe_my_tribe_brown  = '../../../assets/images/my-vibe-my-tribe-w-brown.png';
-const w_my_vibe_my_tribe_gray   = '../../../assets/images/my-vibe-my-tribe-w-gray.png';
-const w_my_vibe_my_tribe_yellow = '../../../assets/images/my-vibe-my-tribe-w-yellow.png';
-const w_white_widow_black       = '../../../assets/images/white-widow-w-black.png';
-const w_white_widow_pink        = '../../../assets/images/white-widow-w-pink.png';
-const w_white_widow_white       = '../../../assets/images/white-widow-w-white.png';
+const m_80085_gray              = 'assets/images/80085-m-gray.png';
+const m_80085_olive             = 'assets/images/80085-m-olive.png';
+const m_80085_red               = 'assets/images/80085-m-red.png';
+const m_baboon_blue             = 'assets/images/baboon-m-blue.png';
+const m_baboon_green            = 'assets/images/baboon-m-green.png';
+const m_baboon_smoke            = 'assets/images/baboon-m-smoke.png';
+const w_i_love_u_black          = 'assets/images/i-love-u-w-black.png';
+const w_i_love_u_pink           = 'assets/images/i-love-u-w-pink.png';
+const w_i_love_u_white          = 'assets/images/i-love-u-w-white.png';
+const m_lover_blue              = 'assets/images/lover-m-blue.png';
+const m_lover_orange            = 'assets/images/lover-m-orange.png';
+const m_lover_red               = 'assets/images/lover-m-red.png';
+const w_my_vibe_my_tribe_brown  = 'assets/images/my-vibe-my-tribe-w-brown.png';
+const w_my_vibe_my_tribe_gray   = 'assets/images/my-vibe-my-tribe-w-gray.png';
+const w_my_vibe_my_tribe_yellow = 'assets/images/my-vibe-my-tribe-w-yellow.png';
+const m_stay_high_black         = 'assets/images/stay-high-m-black.png';
+const m_stay_high_green         = 'assets/images/stay-high-m-green.png';
+const m_stay_high_white         = 'assets/images/stay-high-m-white.png';
+const w_white_widow_black       = 'assets/images/white-widow-w-black.png';
+const w_white_widow_pink        = 'assets/images/white-widow-w-pink.png';
+const w_white_widow_white       = 'assets/images/white-widow-w-white.png';
+
+
 
 export const ProductListData = [
-  new Product(1, 'Product 1', 'P1 Lorem ipsum dolor sit amet.', 12.3,
+  new Product(1, '80085', 'Softest digits around', 12.3, 'https://fatcatstore.threadless.com/designs/80085',
     [
-      { color: 'gray', size:   'XS', code: 'P1XSBLUE', image:   m_80085_gray },
-      { color: 'olive', size: 'XS', code: 'P1XSORANGE', image: m_80085_olive },
-      { color: 'red', size: 'XS', code: 'P1XSPURPLE', image: m_80085_red },
-      { color: 'gray', size:   'S', code:  'P1SBLUE', image:    m_80085_gray },
-      { color: 'orange', size: 'S', code:  'P1SORANGE', image:  m_80085_olive },
-      { color: 'purple', size: 'S', code:  'P1SPURPLE', image:  m_80085_red },
-      { color: 'gray', size:   'M', code:  'P1MBLUE', image:    m_80085_gray },
-      { color: 'orange', size: 'M', code:  'P1MORANGE', image:  m_80085_olive },
-      { color: 'purple', size: 'M', code:  'P1MPURPLE', image:  m_80085_red },
-      { color: 'gray', size:   'L', code:  'P1LBLUE', image:    m_80085_gray },
-      { color: 'orange', size: 'L', code:  'P1LORANGE', image:  m_80085_olive },
-      { color: 'purple', size: 'L', code:  'P1LPURPLE', image:  m_80085_red },
-      { color: 'gray', size:   'XL', code: 'P1XLBLUE', image:   m_80085_gray },
-      { color: 'olive', size: 'XL', code: 'P1XLORANGE', image: m_80085_olive },
-      { color: 'red', size: 'XL', code: 'P1XLPURPLE', image: m_80085_red },
+      { color: 'gray', size: 'XS', code: '80085XSGRAY', image: m_80085_gray },
+      { color: 'olive', size: 'XS', code: '80085XSOLIVE', image: m_80085_olive },
+      { color: 'red', size: 'XS', code: '80085XSRED', image: m_80085_red },
+      { color: 'gray', size: 'S', code: '80085SGRAY', image: m_80085_gray },
+      { color: 'olive', size: 'S', code: '80085SOLIVE', image: m_80085_olive },
+      { color: 'red', size: 'S', code: '80085SRED', image: m_80085_red },
+      { color: 'gray', size: 'M', code: '80085MGRAY', image: m_80085_gray },
+      { color: 'olive', size: 'M', code: '80085MOLIVE', image: m_80085_olive },
+      { color: 'red', size: 'M', code: '80085MRED', image: m_80085_red },
+      { color: 'gray', size: 'L', code: '80085LGRAY', image: m_80085_gray },
+      { color: 'olive', size: 'L', code: '80085LOLIVE', image: m_80085_olive },
+      { color: 'red', size: 'L', code: '80085LRED', image: m_80085_red },
+      { color: 'gray', size: 'XL', code: '80085XLGRAY', image: m_80085_gray },
+      { color: 'olive', size: 'XL', code: '80085XLOLIVE', image: m_80085_olive },
+      { color: 'red', size: 'XL', code: '80085XLRED', image: m_80085_red },
     ],
     [
       { name: 'Alfred', content: 'Lorem ipsum dolor sit amet...' }
     ]
   ),
-  new Product(2, 'Product 2', 'P2 Lorem ipsum dolor sit amet.', 13.4,
+  new Product(2, 'Baboon', 'Proud to be baboon', 13.4, 'https://fatcatstore.threadless.com/designs/proud-baboon',
     [
-      { color: 'green', size: 'XS', code: 'P2XSGREEN', image: m_baboon_blue },
-      { color: 'purple', size: 'XS', code: 'P2XSPURPLE', image: m_baboon_green },
-      { color: 'red', size: 'XS', code: 'P2XSRED', image: m_baboon_smoke },
-      { color: 'green', size: 'XL', code: 'P2XLGREEN', image: m_baboon_blue },
-      { color: 'purple', size: 'XL', code: 'P2XLPURPLE', image: m_baboon_green },
-      { color: 'red', size: 'XL', code: 'P2XLRED', image: m_baboon_smoke },
+      { color: 'blue', size: 'XS', code: 'BBNXSBLUE', image: m_baboon_blue },
+      { color: 'green', size: 'XS', code: 'BBNXSGREEN', image: m_baboon_green },
+      { color: 'gray', size: 'XS', code: 'BBNXSGRAY', image: m_baboon_smoke },
+      { color: 'blue', size: 'XL', code: 'BBNXLBLUE', image: m_baboon_blue },
+      { color: 'green', size: 'XL', code: 'BBNXLGREEN', image: m_baboon_green },
+      { color: 'gray', size: 'XL', code: 'BBNXLGRAY', image: m_baboon_smoke },
     ],
     [
       { name: 'Romuald', content: 'Nie wszystko złoto, co się święci.' }
     ]
   ),
-  new Product(3, 'Product 3', 'P3 Lorem ipsum dolor sit amet.', 14.5,
+  new Product(3, 'I Love U', 'More than iPhone', 14.5, 'https://fatcatstore.threadless.com/designs/ilove-u',
     [
-      { color: 'orange', size: 'XS', code: 'P3XSORANGE', image: w_i_love_u_black },
-      { color: 'blue', size: 'XS', code: 'P3XSBLUE', image: w_i_love_u_pink },
-      { color: 'orange', size: 'S', code: 'P3SORANGE', image: w_i_love_u_black },
-      { color: 'blue', size: 'S', code: 'P3SBLUE', image: w_i_love_u_pink },
-      { color: 'orange', size: 'M', code: 'P3MORANGE', image: w_i_love_u_black },
-      { color: 'blue', size: 'M', code: 'P3MBLUE', image: w_i_love_u_pink },
-      { color: 'orange', size: 'L', code: 'P3LORANGE', image: w_i_love_u_black },
-      { color: 'blue', size: 'L', code: 'P3LBLUE', image: w_i_love_u_pink },
-      { color: 'orange', size: 'XL', code: 'P3XLORANGE', image: w_i_love_u_black },
-      { color: 'blue', size: 'XL', code: 'P3XLBLUE', image: w_i_love_u_pink },
+      { color: 'black', size: 'XS', code: 'ILUXSBLACK', image: w_i_love_u_black },
+      { color: 'pink', size: 'XS', code: 'ILUXSPINK', image: w_i_love_u_pink },
+      { color: 'black', size: 'S', code: 'ILUSBLACK', image: w_i_love_u_black },
+      { color: 'pink', size: 'S', code: 'ILUSPINK', image: w_i_love_u_pink },
+      { color: 'black', size: 'M', code: 'ILUMBLACK', image: w_i_love_u_black },
+      { color: 'pink', size: 'M', code: 'ILUMPINK', image: w_i_love_u_pink },
+      { color: 'black', size: 'L', code: 'ILULBLACK', image: w_i_love_u_black },
+      { color: 'pink', size: 'L', code: 'ILULPINK', image: w_i_love_u_pink },
+      { color: 'black', size: 'XL', code: 'ILUXLBLACK', image: w_i_love_u_black },
+      { color: 'pink', size: 'XL', code: 'ILUXLPINK', image: w_i_love_u_pink },
     ],
     [
       { name: 'AntekPL', content: 'Kupiłem takie Misiowi. Bardzo ładnie na nim leży.' }
     ]
   ),
-  new Product(4, 'Product 4', 'P4 Lorem ipsum dolor sit amet.', 15.6,
+  new Product(4, 'Love®', 'Comercialized emotions', 15.6, 'https://fatcatstore.threadless.com/designs/love-r',
     [
-      { color: 'blue', size: 'XS', code: 'P5XSBLACK', image: m_lover_blue },
-      { color: 'orange', size: 'XS', code: 'P5XSBLUE', image: m_lover_orange },
-      { color: 'red', size: 'XS', code: 'P5XSGREEN', image: m_lover_red },
-      { color: 'blue', size: 'S', code: 'P5SBLACK', image: m_lover_blue },
-      { color: 'orange', size: 'S', code: 'P5SBLUE', image: m_lover_orange },
-      { color: 'red', size: 'S', code: 'P5SGREEN', image: m_lover_red },
-      { color: 'blue', size: 'M', code: 'P5MBLACK', image: m_lover_blue },
-      { color: 'orange', size: 'M', code: 'P5MBLUE', image: m_lover_orange },
-      { color: 'red', size: 'M', code: 'P5MGREEN', image: m_lover_red },
-      { color: 'blue', size: 'L', code: 'P5LBLACK', image: m_lover_blue },
-      { color: 'orange', size: 'L', code: 'P5LBLUE', image: m_lover_orange },
-      { color: 'red', size: 'L', code: 'P5LGREEN', image: m_lover_red },
-      { color: 'blue', size: 'XL', code: 'P5XLBLACK', image: m_lover_blue },
-      { color: 'orange', size: 'XL', code: 'P5XLBLUE', image: m_lover_orange },
-      { color: 'red', size: 'XL', code: 'P5XLGREEN', image: m_lover_red },
+      { color: 'blue', size: 'XS', code: 'LVRXSBLUE', image: m_lover_blue },
+      { color: 'orange', size: 'XS', code: 'LVRXSORANGE', image: m_lover_orange },
+      { color: 'red', size: 'XS', code: 'LVRXSRED', image: m_lover_red },
+      { color: 'blue', size: 'S', code: 'LVRSBLUE', image: m_lover_blue },
+      { color: 'orange', size: 'S', code: 'LVRSORANGE', image: m_lover_orange },
+      { color: 'red', size: 'S', code: 'LVRSRED', image: m_lover_red },
+      { color: 'blue', size: 'M', code: 'LVRMBLUE', image: m_lover_blue },
+      { color: 'orange', size: 'M', code: 'LVRMORANGE', image: m_lover_orange },
+      { color: 'red', size: 'M', code: 'LVRMRED', image: m_lover_red },
+      { color: 'blue', size: 'L', code: 'LVRLBLUE', image: m_lover_blue },
+      { color: 'orange', size: 'L', code: 'LVRLORANGE', image: m_lover_orange },
+      { color: 'red', size: 'L', code: 'LVRLRED', image: m_lover_red },
+      { color: 'blue', size: 'XL', code: 'LVRXLBLUE', image: m_lover_blue },
+      { color: 'orange', size: 'XL', code: 'LVRXLORANGE', image: m_lover_orange },
+      { color: 'red', size: 'XL', code: 'LVRXLRED', image: m_lover_red },
     ],
     [
       { name: 'Janusz', content: 'Pierwszy!!!1!1jeden!' }
     ]
   ),
-  new Product(5, 'Product 5', 'P5 Lorem ipsum dolor sit amet.', 16.7,
+  new Product(5, 'My Vibe My Tribe', 'Good vibrations', 16.7, 'https://bxrnxmstxrdxm.threadless.com/designs/my-vibe-my-tribe',
     [
-      { color: 'purple', size: 'XS', code: 'P5XSPURPLE', image: w_my_vibe_my_tribe_brown },
-      { color: 'blue', size: 'XS', code: 'P5XSBLUE', image: w_my_vibe_my_tribe_gray },
-      { color: 'orange', size: 'XS', code: 'P5XSORANGE', image: w_my_vibe_my_tribe_yellow },
-      { color: 'purple', size: 'S', code: 'P5SPURPLE', image: w_my_vibe_my_tribe_brown },
-      { color: 'blue', size: 'S', code: 'P5SBLUE', image: w_my_vibe_my_tribe_gray },
-      { color: 'orange', size: 'S', code: 'P5SORANGE', image: w_my_vibe_my_tribe_yellow },
-      { color: 'purple', size: 'M', code: 'P5MPURPLE', image: w_my_vibe_my_tribe_brown },
-      { color: 'blue', size: 'M', code: 'P5MBLUE', image: w_my_vibe_my_tribe_gray },
-      { color: 'orange', size: 'M', code: 'P5MORANGE', image: w_my_vibe_my_tribe_yellow },
-      { color: 'purple', size: 'L', code: 'P5LPURPLE', image: w_my_vibe_my_tribe_brown },
-      { color: 'blue', size: 'L', code: 'P5LBLUE', image: w_my_vibe_my_tribe_gray },
-      { color: 'orange', size: 'L', code: 'P5LORANGE', image: w_my_vibe_my_tribe_yellow },
-      { color: 'purple', size: 'XL', code: 'P5XLPURPLE', image: w_my_vibe_my_tribe_brown },
-      { color: 'blue', size: 'XL', code: 'P5XLBLUE', image: w_my_vibe_my_tribe_gray },
-      { color: 'orange', size: 'XL', code: 'P5XLORANGE', image: w_my_vibe_my_tribe_yellow },
+      { color: 'brown', size: 'XS', code: 'MVMTXSBROWN', image: w_my_vibe_my_tribe_brown },
+      { color: 'gray', size: 'XS', code: 'MVMTXSGRAY', image: w_my_vibe_my_tribe_gray },
+      { color: 'yellow', size: 'XS', code: 'MVMTXSYELLOW', image: w_my_vibe_my_tribe_yellow },
+      { color: 'brown', size: 'S', code: 'MVMTSBROWN', image: w_my_vibe_my_tribe_brown },
+      { color: 'gray', size: 'S', code: 'MVMTSGRAY', image: w_my_vibe_my_tribe_gray },
+      { color: 'yellow', size: 'S', code: 'MVMTSYELLOW', image: w_my_vibe_my_tribe_yellow },
+      { color: 'brown', size: 'M', code: 'MVMTMBROWN', image: w_my_vibe_my_tribe_brown },
+      { color: 'gray', size: 'M', code: 'MVMTMGRAY', image: w_my_vibe_my_tribe_gray },
+      { color: 'yellow', size: 'M', code: 'MVMTMYELLOW', image: w_my_vibe_my_tribe_yellow },
+      { color: 'brown', size: 'L', code: 'MVMTLBROWN', image: w_my_vibe_my_tribe_brown },
+      { color: 'gray', size: 'L', code: 'MVMTLGRAY', image: w_my_vibe_my_tribe_gray },
+      { color: 'yellow', size: 'L', code: 'MVMTLYELLOW', image: w_my_vibe_my_tribe_yellow },
+      { color: 'brown', size: 'XL', code: 'MVMTXLBROWN', image: w_my_vibe_my_tribe_brown },
+      { color: 'gray', size: 'XL', code: 'MVMTXLGRAY', image: w_my_vibe_my_tribe_gray },
+      { color: 'yellow', size: 'XL', code: 'MVMTXLYELLOW', image: w_my_vibe_my_tribe_yellow },
     ],
     [
-      { name: 'Grażynka555', content: 'Ale kiecka!! Janiemoge!!! Krycha, ho no zobacz!!!!' }
+      { name: 'Grażynka555', content: 'Ale kiecka!! Janiemoge!!! Krycha, ho no zobatsz!!!!' }
+    ]
+  ),
+  new Product(6, 'Stay High', 'Low is not the answer', 16.7, 'https://bxrnxmstxrdxm.threadless.com/designs/stay-high',
+    [
+      { color: 'black', size: 'XS', code: 'SHXSBLACK', image: m_stay_high_black },
+      { color: 'green', size: 'XS', code: 'SHXSGREEN', image: m_stay_high_green },
+      { color: 'white', size: 'XS', code: 'SHXSWHITE', image: m_stay_high_white },
+      { color: 'black', size: 'S', code: 'SHSBLACK', image: m_stay_high_black },
+      { color: 'green', size: 'S', code: 'SHSGREEN', image: m_stay_high_green },
+      { color: 'white', size: 'S', code: 'SHSWHITE', image: m_stay_high_white },
+      { color: 'black', size: 'M', code: 'SHMBLACK', image: m_stay_high_black },
+      { color: 'green', size: 'M', code: 'SHMGREEN', image: m_stay_high_green },
+      { color: 'white', size: 'M', code: 'SHMWHITE', image: m_stay_high_white },
+      { color: 'black', size: 'L', code: 'SHLBLACK', image: m_stay_high_black },
+      { color: 'green', size: 'L', code: 'SHLGREEN', image: m_stay_high_green },
+      { color: 'white', size: 'L', code: 'SHLWHITE', image: m_stay_high_white },
+      { color: 'black', size: 'XL', code: 'SHXLBLACK', image: m_stay_high_black },
+      { color: 'green', size: 'XL', code: 'SHXLGREEN', image: m_stay_high_green },
+      { color: 'white', size: 'XL', code: 'SHXLWHITE', image: m_stay_high_white },
+    ],
+    [
+      { name: 'Czesław16', content: 'Normalnie to bym se kupił, ale matka mi kasy nie da.' }
+    ]
+  ),
+  new Product(7, 'White Widow', 'Black friday sale', 16.7, 'https://bxrnxmstxrdxm.threadless.com/designs/white-widow',
+    [
+      { color: 'black', size: 'XS', code: 'WWXSBLACK', image: w_white_widow_black },
+      { color: 'pink', size: 'XS', code: 'WWXSPINK', image: w_white_widow_pink },
+      { color: 'white', size: 'XS', code: 'WWXSWHITE', image: w_white_widow_white },
+      { color: 'black', size: 'S', code: 'WWSBLACK', image: w_white_widow_black },
+      { color: 'pink', size: 'S', code: 'WWSPINK', image: w_white_widow_pink },
+      { color: 'white', size: 'S', code: 'WWSWHITE', image: w_white_widow_white },
+      { color: 'black', size: 'M', code: 'WWMBLACK', image: w_white_widow_black },
+      { color: 'pink', size: 'M', code: 'WWMPINK', image: w_white_widow_pink },
+      { color: 'white', size: 'M', code: 'WWMWHITE', image: w_white_widow_white },
+      { color: 'black', size: 'L', code: 'WWLBLACK', image: w_white_widow_black },
+      { color: 'pink', size: 'L', code: 'WWLPINK', image: w_white_widow_pink },
+      { color: 'white', size: 'L', code: 'WWLWHITE', image: w_white_widow_white },
+      { color: 'black', size: 'XL', code: 'WWXLBLACK', image: w_white_widow_black },
+      { color: 'pink', size: 'XL', code: 'WWXLPINK', image: w_white_widow_pink },
+      { color: 'white', size: 'XL', code: 'WWXLWHITE', image: w_white_widow_white },
+    ],
+    [
+      { name: 'Waldemar', content: 'Leży jak ulał. Polecam tego allegrowicza.' }
     ]
   ),
 ];

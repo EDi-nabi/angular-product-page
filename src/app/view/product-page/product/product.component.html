@@ -6,11 +6,12 @@
         <app-carousel></app-carousel>
       </div>
       <div class="col-md-5">
-        <div class="row">
-          <h1>{{ (product$ | async).name }}</h1>
-          <h3>${{ (product$ | async).price }}</h3>
-          <h4>{{ (product$ | async).variants[(variant$ | async)].code }}</h4>
-          <p>{{ (product$ | async).description }}</p>
+        <div class="row" *ngIf="product$ | async as product">
+          <h1>{{ product.name }}</h1>
+          <h3>${{ product.price }}</h3>
+          <h4>{{ product.variants[(variant$ | async)].code }}</h4>
+          <p>{{ product.description }}</p>
+          <p>Available on <a href="{{product.url}}" target="_blank">Threadless</a></p>
         </div>
         <hr>
         <div class="row">

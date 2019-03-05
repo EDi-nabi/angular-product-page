@@ -18,8 +18,8 @@ export class MockData {
   private variant2: ProductVariant = { color: 'blue', size: 'L', code: 'LBLUE', image: 'https://image.jpg' };
   private variant3: ProductVariant = { color: 'purple', size: 'S', code: 'SPURPLE', image: 'https://image.jpg' };
   private variants: ProductVariant[] = [this.variant1, this.variant2, this.variant3];
-  private product1: Product = { id: 1, name: 'Product 1', description: 'Lorem ipsum', price: 10.0, variants: this.variants, reviews: this.reviews };
-  private product2: Product = { id: 2, name: 'Product 2', description: 'Lorem ipsum', price: 10.0, variants: this.variants, reviews: this.reviews };
+  private product1: Product = { id: 1, name: 'Product 1', description: 'Lorem ipsum', price: 10.0, url: 'http://product.html', variants: this.variants, reviews: this.reviews };
+  private product2: Product = { id: 2, name: 'Product 2', description: 'Lorem ipsum', price: 10.0, url: 'http://product.html', variants: this.variants, reviews: this.reviews };
   private products: Product[] = [this.product1, this.product2];
   private activeProduct: ActiveProduct = { product: this.product1, variant: 0 };
   private emptyActiveProduct: ActiveProduct = {};
@@ -38,6 +38,8 @@ export class MockData {
   getProductlistState() { return this.productlistState; }
   getProductlist() { return this.productlist; }
   getProducts() { return this.products; }
+  getSimilarProducts() { return this.products; }
+  getOtherProducts() { return this.products; }
   getProduct() { return this.product1; }
   getActiveProduct() { return this.activeProduct; }
   getActiveProductItem() { return this.product1; }

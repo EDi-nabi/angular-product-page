@@ -12,6 +12,16 @@ export class MockProductsService {
     return state.asObservable();
   }
 
+  getSimilarProducts$(): Observable<Product[]> {
+    const state: BehaviorSubject<Product[]> = new BehaviorSubject(this.mockData.getSimilarProducts());
+    return state.asObservable();
+  }
+
+  getOtherProducts$(): Observable<Product[]> {
+    const state: BehaviorSubject<Product[]> = new BehaviorSubject(this.mockData.getOtherProducts());
+    return state.asObservable();
+  }
+
   getActiveProduct$(): Observable<ActiveProduct> {
     const state: BehaviorSubject<ActiveProduct> = new BehaviorSubject(this.mockData.getActiveProduct());
     return state.asObservable();

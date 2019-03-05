@@ -17,6 +17,8 @@ export class ProductsService {
 
   public productList$: Observable<fromProductList.State>;
   public products$: Observable<Product[]>;
+  public otherProducts$: Observable<Product[]>;
+  public similarProducts$: Observable<Product[]>;
   public activeProduct$: Observable<ActiveProduct>;
   public activeProductItem$: Observable<Product>;
   public activeProductVariant$: Observable<number>;
@@ -31,6 +33,14 @@ export class ProductsService {
 
   getProducts$() {
     return this.products$ ? this.products$ : this.products$ = this.store.select(fromStore.getProducts);
+  }
+
+  getOtherProducts$() {
+    return this.otherProducts$ ? this.otherProducts$ : this.otherProducts$ = this.store.select(fromStore.getOtherProducts);
+  }
+
+  getSimilarProducts$() {
+    return this.similarProducts$ ? this.similarProducts$ : this.similarProducts$ = this.store.select(fromStore.getSimilarProducts);
   }
 
   getActiveProduct$() {

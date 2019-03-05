@@ -15,7 +15,7 @@ export class SimilarProductsComponent implements OnInit {
   constructor(private productsService: ProductsService) { }
 
   ngOnInit() {
-    this.products$ = this.productsService.getProducts$();
+    this.products$ = this.productsService.getSimilarProducts$();
   }
 
 }

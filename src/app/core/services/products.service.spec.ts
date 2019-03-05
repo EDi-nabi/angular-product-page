@@ -46,6 +46,24 @@ describe('ProductsService', () => {
     expect(service.getProducts$()).toBeTruthy();
   });
 
+  it('getOtherProducts$ should select fromStore.getOtherProducts', () => {
+    const store = TestBed.get(Store);
+    const service: ProductsService = TestBed.get(ProductsService);
+    const spyStoreSelect = spyOn(store, 'select').and.callThrough();
+    service.getOtherProducts$();
+    expect(spyStoreSelect).toHaveBeenCalledWith(fromStore.getOtherProducts);
+    expect(service.getOtherProducts$()).toBeTruthy();
+  });
+
+  it('getSimilarProducts$ should select fromStore.getSimilarProducts', () => {
+    const store = TestBed.get(Store);
+    const service: ProductsService = TestBed.get(ProductsService);
+    const spyStoreSelect = spyOn(store, 'select').and.callThrough();
+    service.getSimilarProducts$();
+    expect(spyStoreSelect).toHaveBeenCalledWith(fromStore.getSimilarProducts);
+    expect(service.getSimilarProducts$()).toBeTruthy();
+  });
+
   it('getActiveProduct$ should select fromStore.getActiveProduct', () => {
     const store = TestBed.get(Store);
     const service: ProductsService = TestBed.get(ProductsService);
